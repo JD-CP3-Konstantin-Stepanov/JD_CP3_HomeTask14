@@ -1,4 +1,5 @@
 package org.example;
+
 import java.util.Scanner;
 
 public class Main {
@@ -16,37 +17,39 @@ public class Main {
                 scanner.close();
                 break;
             }
-            nameSearch(name);
+            boolean ret = nameSearch(name);
+            if (!ret) {
+                throw new AssertionError("Имена нужно вводить с большой буквы!");
+            }
         }
     }
 
-    public static void nameSearch(String inputString){
+    public static boolean nameSearch(String inputString) {
 
         if (!Character.isUpperCase(inputString.charAt(0))) {
-            throw new AssertionError("Имена нужно вводить с большой буквы!");
+            return false;
         }
 
         if (maxName == null) {
             System.out.println("Это первое введённое имя!");
             System.out.println();
             maxName = inputString;
-            return;
+            return true;
         }
 
         if (inputString.length() > maxName.length()) {
             maxName = inputString;
             System.out.println("Самое длинное имя: " + maxName);
             System.out.println();
-        } else if(inputString.length() == maxName.length())
-        {
+        } else if (inputString.length() == maxName.length()) {
             System.out.println("Введённое имя равно максимальному");
             maxName = inputString;
             System.out.println("Самое длинное имя: " + maxName);
-        }
-        else {
+        } else {
             System.out.println("Самое длинное имя: " + maxName);
             System.out.println("Не хватило символов: " + (maxName.length() - inputString.length()));
             System.out.println();
         }
+        return true;
     }
 }

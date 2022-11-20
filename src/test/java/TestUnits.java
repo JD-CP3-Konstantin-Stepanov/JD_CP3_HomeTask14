@@ -21,22 +21,19 @@ public class TestUnits {
 
     @Test
     public void negativeInputIntValues(){
-        Main.nameSearch(String.valueOf(111));
-        Assertions.assertDoesNotThrow(() -> {});
+        Assertions.assertFalse(Main.nameSearch(String.valueOf(111)));
         Main.name = "end";
     }
 
     @Test
     public void negativeInputDoubleValues(){
-        Main.nameSearch(String.valueOf(1.0D));
-        Assertions.assertDoesNotThrow(() -> {});
+        Assertions.assertFalse(Main.nameSearch(String.valueOf(1.0D)));
         Main.name = "end";
     }
 
     @Test
     public void negativeInputStringValueNotCapital(){
-        Main.nameSearch("x");
-        Assertions.assertDoesNotThrow(() -> {});
+        Assertions.assertFalse(Main.nameSearch("x"));
         Main.name = "end";
     }
 }
